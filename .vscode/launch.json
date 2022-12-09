@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Docker: Attach to Node",
+            "remoteRoot": "/usr/src/app"
+        },
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "sam-app:HelloWorldFunction",
+            "invokeTarget": {
+                "target": "template",
+                "templatePath": "template.yaml",
+                "logicalId": "HelloWorldFunction"
+            },
+            "lambda": {
+                "payload": {},
+                "environmentVariables": {}
+            }
+        }
+    ]
+}
