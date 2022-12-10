@@ -9,11 +9,11 @@
         {
             "type": "aws-sam",
             "request": "direct-invoke",
-            "name": "sam-app:HelloWorldFunction",
+            "name": "sam-app:CSVToDatabaseFunction",
             "invokeTarget": {
                 "target": "template",
                 "templatePath": "template.yaml",
-                "logicalId": "HelloWorldFunction"
+                "logicalId": "CSVToDatabaseFunction"
             },
             "lambda": {
                 "payload": {},

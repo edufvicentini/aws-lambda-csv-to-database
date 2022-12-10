@@ -8,14 +8,14 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 15
     MemorySize: 128
     Tracing: Active
   Api:
     TracingEnabled: True
 
 Resources:
-  HelloWorldFunction:
+  CSVToDatabaseFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: api/
@@ -38,8 +38,8 @@ Outputs:
     Description: "API endpoint URL for importing a standard 'cessao_fundo' csv file to database."
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/cessao-fundo-csv-to-database/"
   CessaoFundoCSVToDatabaseFunction:
-    Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
+    Description: "CessaoFundo CSV To Database Function ARN"
+    Value: !GetAtt CSVToDatabaseFunction.Arn
   CessaoFundoCSVToDatabaseFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+    Description: "Implicit IAM Role created for CessaoFundo CSV To Database"
+    Value: !GetAtt CSVToDatabaseFunction.Arn
