@@ -12,11 +12,11 @@ def handle_csv(data):
     # fetch into a array
     result = []
     error_list = []
-    for line in fetched_lines:
+    for index, line in enumerate(fetched_lines, start=1):
         try:
             result.append(create_cessao_fundo_object(line))
         except Exception as e:
-            error_list.append({'originador': line[0], 'ccb': line[4], 'error':e.args[0]})
+            error_list.append({'line': index,'originador': line[0], 'ccb': line[4], 'error':e.args[0]})
 
     fetched_object = { 'success': len(result), 'error': {'count':len(error_list), 'error_list': error_list}, 'data': result }     
     return fetched_object

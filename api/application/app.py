@@ -1,4 +1,3 @@
-import json
 import boto3
 from botocore.exceptions import ClientError
 from application.csv_handler import handle_csv
@@ -9,9 +8,8 @@ from sqlalchemy import insert
 def lambda_handler(event, context):
     # TODO implement
     # Read csv
-    body = json.loads(event['body'])
     try:
-        data = get_file_from_s3(body['bucket_name'], body['object_key'])
+        data = get_file_from_s3(event['bucket_name'], event['object_key'])
     except Exception as e:
         return {
             'statusCode': 500,
