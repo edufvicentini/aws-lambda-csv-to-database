@@ -1,7 +1,7 @@
 # CSV to Database - AWS LAMBDA
 
 ## 💻 About the project
-This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. This function converts a standard CSV file into database records inside AWS ecosystem using PostgreSQL.
+This project is an AWS Stack developed using Serverless Application Model. This repository contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. This function converts a standard CSV file into database records inside AWS ecosystem using PostgreSQL.
 
 The application uses several AWS resources, including Lambda functions and an API Gateway API. These resources are defined in the `template.yaml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
 
@@ -12,6 +12,7 @@ The following tools were used in building the project:
 - **[Python (Vanilla)](https://www.python.org/)**
 - **[PostgreSQL](https://www.postgresql.org/)**
 - **[SQLAlchemy (ORM)](https://www.sqlalchemy.org/)**
+- **[AWS SAM](https://aws.amazon.com/pt/serverless/sam/)**
 - **[AWS Lambda](https://aws.amazon.com/en/lambda/)**
 - **[AWS S3](https://aws.amazon.com/en/s3/)**
 - **[AWS RDS](https://aws.amazon.com/en/rds/)**
@@ -79,6 +80,11 @@ Inside --guided, you will answer the following:
 
 You can find your API Gateway Endpoint URL in the output values displayed after deployment.
 
+P.S.: You may need to set up some roles inside AWS IAM to build this.
+
+## After Deploy
+You will have to setup a URL for the deployed function. Follow up the [Official Documentation](https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html) for more information.
+
 ## Environment Variables
 In your function, please use these following environment variables, in order to establish connection with the database:
 ```bash
@@ -88,3 +94,49 @@ In your function, please use these following environment variables, in order to 
   DB_PORT	       # your database port (default = 5432)
   DB_USERNAME	 # your database user
 ```
+
+## How it works?
+This function works by REST API, so it is executed by HTTP Requests. It receives two parameters, the S3 bucket_name and the object_key.
+
+### Request - POST [your configured URL]
+```bash
+{
+  "bucket_name": "your-storage",
+  "object_key": "example.csv"
+}
+```
+
+### Response - STATUS CODE 200 [OK]
+```bash
+{
+  "success": 31,
+  "error_list": [
+    {
+      "ccb": "410677",
+      "line": 17,
+      "originador": "EMPIRICA INVESTIMENTOS",
+      "error": "could not convert string to float: 'A666.45'"
+    }
+  ],
+  "error": 1
+}
+```
+
+## ⚙️ Future Features
+- [ ] The project is not working with AWS Events, just by HTTP Requests. This will require some fix later if needed.
+- [ ] Find a way to deliver a better performance to the system.
+
+---
+
+## Author
+
+<a href="https://blog.rocketseat.com.br/author/thiago/">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/95220802?s=400&u=55c93f56de0ea7dfee88bfe5d75a8f795ef89f4b&v=4" width="100px;" alt=""/>
+ <br />
+ <sub><b>Eduardo Frota Vicentini</b></sub></a> <a href="https://blog.rocketseat.com.br/author/thiago//" title="Rocketseat">🚀</a>
+
+
+Made with ❤️ by Eduardo Frota Vicentini 👋🏽 Contact me!
+
+[![Linkedin Badge](https://img.shields.io/badge/-Eduardo-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://https://www.linkedin.com/in/eduardofvicentini/)](https://www.linkedin.com/in/eduardofvicentini/) 
+[![Gmail Badge](https://img.shields.io/badge/-eduardofvicentini@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:eduardofvicentini@gmail.com)](mailto:tgmarinho@gmail.com)
