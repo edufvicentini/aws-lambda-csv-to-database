@@ -1,5 +1,9 @@
 # CSV to Database - AWS LAMBDA
 
+<a href="https://github.com/edufvicentini/aws-lambda-csv-to-database/blob/master/LICENSE">
+   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="aws-lambda-csv-to-database is released under the MIT license." />
+ </a>
+
 ## 💻 About the project
 This project is an AWS Stack developed using Serverless Application Model. This repository contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. This function converts a standard CSV file into database records inside AWS ecosystem using PostgreSQL.
 
